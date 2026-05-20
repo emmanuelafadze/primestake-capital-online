@@ -1,276 +1,213 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, TrendingUp, Shield, Briefcase, BarChart3, Globe2, Award, Mail, Phone, MapPin } from "lucide-react";
-import heroImg from "@/assets/hero.jpg";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import { Navbar } from "@/components/site/Navbar";
+import { Footer } from "@/components/site/Footer";
+import { ArrowUpRight, ShieldCheck, LineChart, Lock, Sparkles, CheckCircle2 } from "lucide-react";
+import hero from "@/assets/hero.jpg";
+import marble from "@/assets/texture-marble.jpg";
+import t1 from "@/assets/testimonial-1.jpg";
+import t2 from "@/assets/testimonial-2.jpg";
+import t3 from "@/assets/testimonial-3.jpg";
 
 export const Route = createFileRoute("/")({
-  component: Index,
   head: () => ({
     meta: [
-      { title: "PrimeStake Capital Online | Smart Investing, Real Results" },
-      { name: "description", content: "PrimeStake Capital Online — institutional-grade wealth management, portfolio strategy and capital growth for modern investors." },
-      { property: "og:title", content: "PrimeStake Capital Online" },
-      { property: "og:description", content: "Institutional-grade wealth management for modern investors." },
+      { title: "PrimeStake Capital — Elite Sports Capital Management" },
+      { name: "description", content: "Private intelligence desk for vetted sporting investments and managed account growth. Built for serious capital." },
+      { property: "og:title", content: "PrimeStake Capital" },
+      { property: "og:description", content: "Elite sports capital management." },
+      { property: "og:url", content: "/" },
     ],
+    links: [{ rel: "canonical", href: "/" }],
   }),
+  component: Landing,
 });
 
-function Nav() {
-  const links = [
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Strategy", href: "#strategy" },
-    { label: "Insights", href: "#insights" },
-    { label: "Contact", href: "#contact" },
-  ];
-  return (
-    <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-background/80 border-b border-border">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="inline-block w-8 h-8 rounded-md" style={{ background: "var(--gradient-gold)" }} />
-          <span className="text-foreground">PrimeStake<span className="text-muted-foreground font-normal"> Capital</span></span>
-        </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} className="text-muted-foreground hover:text-foreground transition-colors">{l.label}</a>
-          ))}
-        </nav>
-        <a href="#contact" className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium text-primary-foreground bg-primary hover:opacity-90 transition">
-          Get Started <ArrowRight className="w-4 h-4" />
-        </a>
-      </div>
-    </header>
-  );
-}
+const stats = [
+  { k: "Members", v: "12,400+" },
+  { k: "Capital under management", v: "$28M" },
+  { k: "Strike rate (12-mo)", v: "91.4%" },
+  { k: "Average member ROI", v: "37%" },
+];
 
-function Hero() {
-  return (
-    <section className="relative min-h-screen flex items-center pt-16 overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
-      <img src={heroImg} alt="" width={1920} height={1280} className="absolute inset-0 w-full h-full object-cover opacity-30" />
-      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent 0%, oklch(0.18 0.04 255 / 0.4) 100%)" }} />
-      <div className="relative max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
-        <div className="text-primary-foreground">
-          <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-accent mb-6">
-            <span className="w-8 h-px bg-accent" /> Est. 2009
-          </span>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05]">
-            Smart capital. <br />
-            <span className="italic font-light text-accent">Real returns.</span>
-          </h1>
-          <p className="mt-6 text-lg text-primary-foreground/70 max-w-lg">
-            PrimeStake Capital Online delivers institutional-grade portfolio strategy, risk management, and growth advisory to a new generation of investors.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-md font-medium text-primary hover:translate-y-[-1px] transition" style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
-              Open an Account <ArrowRight className="w-4 h-4" />
-            </a>
-            <a href="#services" className="inline-flex items-center gap-2 px-6 py-3 rounded-md font-medium border border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 transition">
-              Explore Services
-            </a>
-          </div>
-          <div className="mt-16 grid grid-cols-3 gap-6 max-w-md">
-            {[
-              { v: "$4.2B", l: "Assets Managed" },
-              { v: "18yrs", l: "Track Record" },
-              { v: "12k+", l: "Clients" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="text-2xl font-semibold text-accent">{s.v}</div>
-                <div className="text-xs text-primary-foreground/60 mt-1">{s.l}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+const features = [
+  { icon: ShieldCheck, title: "Verified intelligence", body: "Every release is cross-validated by our analyst desk before reaching members. No noise, no gambling on guesses." },
+  { icon: Lock, title: "Locked release cycles", body: "Tickets stay encrypted until the moment of release. Information advantage is preserved end-to-end." },
+  { icon: LineChart, title: "Managed account growth", body: "Hand off capital to our portfolio team and watch performance compound under disciplined risk control." },
+  { icon: Sparkles, title: "Concierge support", body: "Direct line to a senior associate for KYC, withdrawals, and portfolio adjustments — 24/7." },
+];
 
-function Section({ id, eyebrow, title, children }: { id?: string; eyebrow: string; title: string; children: React.ReactNode }) {
-  return (
-    <section id={id} className="py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="max-w-2xl mb-16">
-          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{eyebrow}</span>
-          <h2 className="mt-3 text-4xl md:text-5xl font-semibold tracking-tight text-foreground">{title}</h2>
-        </div>
-        {children}
-      </div>
-    </section>
-  );
-}
+const testimonials = [
+  { img: t1, name: "Amara Okafor", role: "Member since 2023", quote: "Single most disciplined sports capital desk I've worked with. Every release feels engineered, not guessed." },
+  { img: t2, name: "Marcus Lindgren", role: "Managed account, $50K", quote: "The KYC was rigorous — which is exactly what gave me the confidence to scale my managed position." },
+  { img: t3, name: "Daniel Vega", role: "Premium tier", quote: "Three correct scores in a row. The first time I saw it land I knew this wasn't the usual market." },
+];
 
-function About() {
-  return (
-    <Section id="about" eyebrow="About us" title="A modern firm with old-world discipline.">
-      <div className="grid md:grid-cols-2 gap-12 items-start">
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          Founded by a team of former portfolio managers and quantitative analysts, PrimeStake Capital combines decades of Wall Street expertise with a digital-first client experience. We believe wealth is built deliberately — through patience, conviction, and a strategy tailored to you.
-        </p>
-        <div className="grid grid-cols-2 gap-6">
-          {[
-            { icon: Award, t: "Award-winning", d: "Recognized advisory team" },
-            { icon: Shield, t: "Fiduciary", d: "Your interests, always first" },
-            { icon: Globe2, t: "Global reach", d: "Markets across 40+ countries" },
-            { icon: BarChart3, t: "Data-driven", d: "Quant models & research" },
-          ].map(({ icon: Icon, t, d }) => (
-            <div key={t} className="p-6 rounded-lg bg-secondary">
-              <Icon className="w-6 h-6 text-primary mb-3" />
-              <div className="font-medium text-foreground">{t}</div>
-              <div className="text-sm text-muted-foreground mt-1">{d}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </Section>
-  );
-}
+const faqs = [
+  { q: "How do release cycles work?", a: "Each ticket is encrypted server-side and only unlocks in your dashboard once payment is confirmed by Paystack. You retain a permanent record under My Purchases." },
+  { q: "What is Account Management?", a: "After KYC approval you can place capital into a managed account. Our desk operates positions and reports performance in real time inside your dashboard." },
+  { q: "Which currencies are supported?", a: "We bill in your local currency where Paystack supports it (NGN, GHS, ZAR, KES, EGP, XOF) and default to USD elsewhere. Conversion happens automatically at checkout." },
+  { q: "How are withdrawals processed?", a: "Withdrawal requests enter a review queue and are released by our operations team after compliance checks. You see status updates the moment they change." },
+];
 
-function Services() {
-  const items = [
-    { icon: TrendingUp, t: "Portfolio Management", d: "Actively managed strategies across equities, fixed income, and alternatives." },
-    { icon: Briefcase, t: "Wealth Advisory", d: "Personal financial planning aligned with your long-term goals and lifestyle." },
-    { icon: Shield, t: "Risk & Hedging", d: "Sophisticated hedging frameworks to protect capital across market cycles." },
-    { icon: BarChart3, t: "Quant Strategies", d: "Systematic, model-driven portfolios built on proprietary research." },
-    { icon: Globe2, t: "Global Markets", d: "Access international equities, FX, and emerging-market opportunities." },
-    { icon: Award, t: "Private Capital", d: "Curated venture, private equity, and real-asset opportunities." },
-  ];
-  return (
-    <Section id="services" eyebrow="What we do" title="Services built around your capital.">
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {items.map(({ icon: Icon, t, d }) => (
-          <div key={t} className="group p-8 rounded-lg border border-border bg-card hover:border-accent transition-all hover:-translate-y-1" style={{ boxShadow: "var(--shadow-elegant)" }}>
-            <Icon className="w-8 h-8 text-primary group-hover:text-accent transition-colors mb-4" />
-            <h3 className="text-xl font-semibold text-foreground">{t}</h3>
-            <p className="mt-2 text-muted-foreground">{d}</p>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function Strategy() {
-  const steps = [
-    { n: "01", t: "Discover", d: "We learn your goals, risk profile, and time horizon." },
-    { n: "02", t: "Design", d: "We craft a bespoke allocation built on rigorous research." },
-    { n: "03", t: "Deploy", d: "Capital is invested across diversified, monitored strategies." },
-    { n: "04", t: "Deliver", d: "Continuous oversight, rebalancing, and transparent reporting." },
-  ];
-  return (
-    <section id="strategy" className="py-24 px-6" style={{ background: "var(--gradient-hero)" }}>
-      <div className="max-w-7xl mx-auto text-primary-foreground">
-        <div className="max-w-2xl mb-16">
-          <span className="text-xs uppercase tracking-[0.2em] text-accent">Our process</span>
-          <h2 className="mt-3 text-4xl md:text-5xl font-semibold tracking-tight">A disciplined approach to compounding.</h2>
-        </div>
-        <div className="grid md:grid-cols-4 gap-8">
-          {steps.map((s) => (
-            <div key={s.n} className="border-t border-primary-foreground/20 pt-6">
-              <div className="text-accent text-sm font-mono">{s.n}</div>
-              <h3 className="mt-2 text-2xl font-semibold">{s.t}</h3>
-              <p className="mt-2 text-primary-foreground/70">{s.d}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Insights() {
-  const posts = [
-    { tag: "Markets", t: "Why dividend equities are quietly outperforming in 2026", d: "May 14, 2026" },
-    { tag: "Strategy", t: "Rebalancing in a high-rate environment: a primer", d: "May 02, 2026" },
-    { tag: "Research", t: "The case for private credit allocations now", d: "Apr 19, 2026" },
-  ];
-  return (
-    <Section id="insights" eyebrow="Insights" title="Research, briefs, and market views.">
-      <div className="grid md:grid-cols-3 gap-6">
-        {posts.map((p) => (
-          <article key={p.t} className="p-8 rounded-lg bg-secondary hover:bg-card hover:shadow-lg transition-all cursor-pointer">
-            <span className="text-xs uppercase tracking-wider text-muted-foreground">{p.tag}</span>
-            <h3 className="mt-3 text-xl font-semibold text-foreground leading-snug">{p.t}</h3>
-            <div className="mt-6 flex items-center justify-between text-sm text-muted-foreground">
-              <span>{p.d}</span>
-              <ArrowRight className="w-4 h-4" />
-            </div>
-          </article>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function Contact() {
-  return (
-    <Section id="contact" eyebrow="Contact" title="Let's build your strategy.">
-      <div className="grid md:grid-cols-2 gap-12">
-        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-          <div className="grid grid-cols-2 gap-4">
-            <input className="px-4 py-3 rounded-md bg-secondary border border-border focus:border-accent outline-none text-foreground" placeholder="First name" />
-            <input className="px-4 py-3 rounded-md bg-secondary border border-border focus:border-accent outline-none text-foreground" placeholder="Last name" />
-          </div>
-          <input type="email" className="w-full px-4 py-3 rounded-md bg-secondary border border-border focus:border-accent outline-none text-foreground" placeholder="Email address" />
-          <input className="w-full px-4 py-3 rounded-md bg-secondary border border-border focus:border-accent outline-none text-foreground" placeholder="Investable assets (optional)" />
-          <textarea rows={5} className="w-full px-4 py-3 rounded-md bg-secondary border border-border focus:border-accent outline-none text-foreground resize-none" placeholder="How can we help?" />
-          <button className="inline-flex items-center gap-2 px-6 py-3 rounded-md font-medium text-primary-foreground bg-primary hover:opacity-90 transition">
-            Send Inquiry <ArrowRight className="w-4 h-4" />
-          </button>
-        </form>
-        <div className="space-y-6">
-          <p className="text-lg text-muted-foreground">
-            Speak with an advisor about your portfolio. Initial consultations are complimentary and confidential.
-          </p>
-          <div className="space-y-4">
-            {[
-              { icon: Mail, t: "advisors@primestakecapital.com" },
-              { icon: Phone, t: "+1 (212) 555-0188" },
-              { icon: MapPin, t: "230 Park Avenue, New York, NY" },
-            ].map(({ icon: Icon, t }) => (
-              <div key={t} className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-md bg-secondary flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-primary" />
-                </div>
-                <span className="text-foreground">{t}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </Section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="border-t border-border py-10 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-        <div className="flex items-center gap-2">
-          <span className="inline-block w-6 h-6 rounded" style={{ background: "var(--gradient-gold)" }} />
-          <span>© {new Date().getFullYear()} PrimeStake Capital Online. All rights reserved.</span>
-        </div>
-        <div className="flex gap-6">
-          <a href="#" className="hover:text-foreground">Disclosures</a>
-          <a href="#" className="hover:text-foreground">Privacy</a>
-          <a href="#" className="hover:text-foreground">Terms</a>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-function Index() {
+export default function Landing() {
   return (
     <div className="min-h-screen bg-background">
-      <Nav />
-      <main>
-        <Hero />
-        <About />
-        <Services />
-        <Strategy />
-        <Insights />
-        <Contact />
-      </main>
+      <Navbar />
+
+      {/* HERO */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={hero} alt="" className="h-full w-full object-cover opacity-[0.18]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/70 to-background" />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-32 md:pt-36 md:pb-40">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
+            className="max-w-3xl"
+          >
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-success" /> Private membership · invitation grade
+            </div>
+            <h1 className="mt-6 text-5xl font-semibold tracking-tight text-balance text-foreground md:text-7xl">
+              Sporting intelligence,<br />engineered for capital.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+              PrimeStake Capital operates a closed intelligence desk and a managed-account program for members
+              who treat sport as an asset class.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              <Link to="/signup" className="inline-flex h-12 items-center gap-2 rounded-full bg-foreground px-6 text-sm font-medium text-background transition-transform hover:-translate-y-0.5">
+                Open an account <ArrowUpRight className="h-4 w-4" />
+              </Link>
+              <Link to="/pricing" className="inline-flex h-12 items-center rounded-full border border-border px-6 text-sm font-medium text-foreground hover:bg-accent">
+                See packages
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* STATS */}
+      <section className="border-y border-border bg-card">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px overflow-hidden md:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.k} className="bg-card p-8">
+              <p className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">{s.v}</p>
+              <p className="mt-2 text-xs uppercase tracking-wider text-muted-foreground">{s.k}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* PACKAGES */}
+      <section className="mx-auto max-w-7xl px-6 py-24">
+        <div className="flex items-end justify-between flex-wrap gap-6">
+          <div className="max-w-xl">
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Packages</p>
+            <h2 className="mt-3 text-4xl font-semibold tracking-tight">A release for every conviction level.</h2>
+          </div>
+          <Link to="/pricing" className="text-sm font-medium underline underline-offset-4">View all pricing →</Link>
+        </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {[
+            { name: "Single Correct Score", price: 50, tag: "Entry tier", features: ["1 correct score", "Analyst notes", "Result tracking"] },
+            { name: "Combo Correct Score", price: 70, tag: "Most popular", features: ["2 correct scores", "Combined odds boost", "Analyst notes"], featured: true },
+            { name: "Premium Package", price: 90, tag: "Flagship", features: ["3 correct scores in a row", "Priority release", "Analyst access"] },
+          ].map((p) => (
+            <div
+              key={p.name}
+              className={`relative flex flex-col rounded-3xl border p-8 ${p.featured ? "border-foreground bg-foreground text-background" : "border-border bg-card"}`}
+            >
+              <p className={`text-xs uppercase tracking-wider ${p.featured ? "text-background/60" : "text-muted-foreground"}`}>{p.tag}</p>
+              <h3 className="mt-3 text-2xl font-semibold">{p.name}</h3>
+              <p className="mt-4 text-5xl font-semibold tracking-tight">
+                ${p.price}<span className={`text-base font-medium ${p.featured ? "text-background/60" : "text-muted-foreground"}`}>/release</span>
+              </p>
+              <ul className="mt-6 space-y-3 text-sm">
+                {p.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />{f}</li>
+                ))}
+              </ul>
+              <Link
+                to="/pricing"
+                className={`mt-8 inline-flex h-11 items-center justify-center rounded-full text-sm font-medium ${
+                  p.featured ? "bg-background text-foreground" : "border border-foreground text-foreground hover:bg-foreground hover:text-background"
+                }`}
+              >Purchase</Link>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FEATURES */}
+      <section className="relative border-y border-border">
+        <img src={marble} alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" loading="lazy" />
+        <div className="relative mx-auto max-w-7xl px-6 py-24">
+          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Why PrimeStake</p>
+          <h2 className="mt-3 max-w-2xl text-4xl font-semibold tracking-tight">An infrastructure built for discipline, not adrenaline.</h2>
+          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {features.map((f) => (
+              <div key={f.title} className="rounded-2xl border border-border bg-card/80 p-6 backdrop-blur">
+                <f.icon className="h-5 w-5 text-foreground" />
+                <h3 className="mt-4 text-base font-semibold">{f.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{f.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="mx-auto max-w-7xl px-6 py-24">
+        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Members</p>
+        <h2 className="mt-3 text-4xl font-semibold tracking-tight">Built on the trust of a closed circle.</h2>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {testimonials.map((t) => (
+            <figure key={t.name} className="rounded-3xl border border-border bg-card p-8">
+              <blockquote className="text-base leading-relaxed text-foreground">"{t.quote}"</blockquote>
+              <figcaption className="mt-6 flex items-center gap-3">
+                <img src={t.img} alt={t.name} className="h-12 w-12 rounded-full object-cover" loading="lazy" />
+                <div>
+                  <p className="text-sm font-medium">{t.name}</p>
+                  <p className="text-xs text-muted-foreground">{t.role}</p>
+                </div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-t border-border bg-card">
+        <div className="mx-auto max-w-4xl px-6 py-24">
+          <h2 className="text-4xl font-semibold tracking-tight">Questions, answered.</h2>
+          <div className="mt-12 divide-y divide-border">
+            {faqs.map((f) => (
+              <details key={f.q} className="group py-6">
+                <summary className="flex cursor-pointer items-center justify-between text-base font-medium">
+                  {f.q}
+                  <span className="ml-4 text-muted-foreground transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-3 text-sm text-muted-foreground">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="mx-auto max-w-7xl px-6 py-24">
+        <div className="rounded-3xl bg-foreground p-12 text-background md:p-20">
+          <h2 className="max-w-2xl text-4xl font-semibold tracking-tight md:text-5xl">Capital deserves discipline. Open an account today.</h2>
+          <p className="mt-4 max-w-xl text-base text-background/70">Sign up in two minutes. Fund in your local currency. Start with a single release or move directly to managed accounts.</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link to="/signup" className="inline-flex h-12 items-center rounded-full bg-background px-6 text-sm font-medium text-foreground">Open account</Link>
+            <Link to="/contact" className="inline-flex h-12 items-center rounded-full border border-background/30 px-6 text-sm font-medium text-background">Talk to us</Link>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

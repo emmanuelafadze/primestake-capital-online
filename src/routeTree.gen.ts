@@ -9,38 +9,527 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as DashboardWalletRouteImport } from './routes/dashboard.wallet'
+import { Route as DashboardTransactionsRouteImport } from './routes/dashboard.transactions'
+import { Route as DashboardSupportRouteImport } from './routes/dashboard.support'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
+import { Route as DashboardPurchasesRouteImport } from './routes/dashboard.purchases'
+import { Route as DashboardPurchaseRouteImport } from './routes/dashboard.purchase'
+import { Route as DashboardProfileRouteImport } from './routes/dashboard.profile'
+import { Route as DashboardNotificationsRouteImport } from './routes/dashboard.notifications'
+import { Route as DashboardAnalyticsRouteImport } from './routes/dashboard.analytics'
+import { Route as DashboardAccountManagementRouteImport } from './routes/dashboard.account-management'
+import { Route as AdminWithdrawalsRouteImport } from './routes/admin.withdrawals'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminTransactionsRouteImport } from './routes/admin.transactions'
+import { Route as AdminSupportRouteImport } from './routes/admin.support'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminPurchasesRouteImport } from './routes/admin.purchases'
+import { Route as AdminPackagesRouteImport } from './routes/admin.packages'
+import { Route as AdminMatchesRouteImport } from './routes/admin.matches'
+import { Route as AdminLogsRouteImport } from './routes/admin.logs'
+import { Route as AdminKycRouteImport } from './routes/admin.kyc'
+import { Route as AdminInvestmentsRouteImport } from './routes/admin.investments'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const DashboardWalletRoute = DashboardWalletRouteImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardTransactionsRoute = DashboardTransactionsRouteImport.update({
+  id: '/transactions',
+  path: '/transactions',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSupportRoute = DashboardSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardPurchasesRoute = DashboardPurchasesRouteImport.update({
+  id: '/purchases',
+  path: '/purchases',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardPurchaseRoute = DashboardPurchaseRouteImport.update({
+  id: '/purchase',
+  path: '/purchase',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardProfileRoute = DashboardProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardNotificationsRoute = DashboardNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAnalyticsRoute = DashboardAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAccountManagementRoute =
+  DashboardAccountManagementRouteImport.update({
+    id: '/account-management',
+    path: '/account-management',
+    getParentRoute: () => DashboardRoute,
+  } as any)
+const AdminWithdrawalsRoute = AdminWithdrawalsRouteImport.update({
+  id: '/withdrawals',
+  path: '/withdrawals',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTransactionsRoute = AdminTransactionsRouteImport.update({
+  id: '/transactions',
+  path: '/transactions',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSupportRoute = AdminSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPurchasesRoute = AdminPurchasesRouteImport.update({
+  id: '/purchases',
+  path: '/purchases',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPackagesRoute = AdminPackagesRouteImport.update({
+  id: '/packages',
+  path: '/packages',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMatchesRoute = AdminMatchesRouteImport.update({
+  id: '/matches',
+  path: '/matches',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLogsRoute = AdminLogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminKycRoute = AdminKycRouteImport.update({
+  id: '/kyc',
+  path: '/kyc',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminInvestmentsRoute = AdminInvestmentsRouteImport.update({
+  id: '/investments',
+  path: '/investments',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/investments': typeof AdminInvestmentsRoute
+  '/admin/kyc': typeof AdminKycRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/matches': typeof AdminMatchesRoute
+  '/admin/packages': typeof AdminPackagesRoute
+  '/admin/purchases': typeof AdminPurchasesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/support': typeof AdminSupportRoute
+  '/admin/transactions': typeof AdminTransactionsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/withdrawals': typeof AdminWithdrawalsRoute
+  '/dashboard/account-management': typeof DashboardAccountManagementRoute
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
+  '/dashboard/profile': typeof DashboardProfileRoute
+  '/dashboard/purchase': typeof DashboardPurchaseRoute
+  '/dashboard/purchases': typeof DashboardPurchasesRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/support': typeof DashboardSupportRoute
+  '/dashboard/transactions': typeof DashboardTransactionsRoute
+  '/dashboard/wallet': typeof DashboardWalletRoute
+  '/admin/': typeof AdminIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/investments': typeof AdminInvestmentsRoute
+  '/admin/kyc': typeof AdminKycRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/matches': typeof AdminMatchesRoute
+  '/admin/packages': typeof AdminPackagesRoute
+  '/admin/purchases': typeof AdminPurchasesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/support': typeof AdminSupportRoute
+  '/admin/transactions': typeof AdminTransactionsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/withdrawals': typeof AdminWithdrawalsRoute
+  '/dashboard/account-management': typeof DashboardAccountManagementRoute
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
+  '/dashboard/profile': typeof DashboardProfileRoute
+  '/dashboard/purchase': typeof DashboardPurchaseRoute
+  '/dashboard/purchases': typeof DashboardPurchasesRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/support': typeof DashboardSupportRoute
+  '/dashboard/transactions': typeof DashboardTransactionsRoute
+  '/dashboard/wallet': typeof DashboardWalletRoute
+  '/admin': typeof AdminIndexRoute
+  '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/signup': typeof SignupRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/investments': typeof AdminInvestmentsRoute
+  '/admin/kyc': typeof AdminKycRoute
+  '/admin/logs': typeof AdminLogsRoute
+  '/admin/matches': typeof AdminMatchesRoute
+  '/admin/packages': typeof AdminPackagesRoute
+  '/admin/purchases': typeof AdminPurchasesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/support': typeof AdminSupportRoute
+  '/admin/transactions': typeof AdminTransactionsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/admin/withdrawals': typeof AdminWithdrawalsRoute
+  '/dashboard/account-management': typeof DashboardAccountManagementRoute
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
+  '/dashboard/profile': typeof DashboardProfileRoute
+  '/dashboard/purchase': typeof DashboardPurchaseRoute
+  '/dashboard/purchases': typeof DashboardPurchasesRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/support': typeof DashboardSupportRoute
+  '/dashboard/transactions': typeof DashboardTransactionsRoute
+  '/dashboard/wallet': typeof DashboardWalletRoute
+  '/admin/': typeof AdminIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/contact'
+    | '/dashboard'
+    | '/forgot-password'
+    | '/login'
+    | '/pricing'
+    | '/reset-password'
+    | '/signup'
+    | '/sitemap.xml'
+    | '/admin/analytics'
+    | '/admin/investments'
+    | '/admin/kyc'
+    | '/admin/logs'
+    | '/admin/matches'
+    | '/admin/packages'
+    | '/admin/purchases'
+    | '/admin/settings'
+    | '/admin/support'
+    | '/admin/transactions'
+    | '/admin/users'
+    | '/admin/withdrawals'
+    | '/dashboard/account-management'
+    | '/dashboard/analytics'
+    | '/dashboard/notifications'
+    | '/dashboard/profile'
+    | '/dashboard/purchase'
+    | '/dashboard/purchases'
+    | '/dashboard/settings'
+    | '/dashboard/support'
+    | '/dashboard/transactions'
+    | '/dashboard/wallet'
+    | '/admin/'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/forgot-password'
+    | '/login'
+    | '/pricing'
+    | '/reset-password'
+    | '/signup'
+    | '/sitemap.xml'
+    | '/admin/analytics'
+    | '/admin/investments'
+    | '/admin/kyc'
+    | '/admin/logs'
+    | '/admin/matches'
+    | '/admin/packages'
+    | '/admin/purchases'
+    | '/admin/settings'
+    | '/admin/support'
+    | '/admin/transactions'
+    | '/admin/users'
+    | '/admin/withdrawals'
+    | '/dashboard/account-management'
+    | '/dashboard/analytics'
+    | '/dashboard/notifications'
+    | '/dashboard/profile'
+    | '/dashboard/purchase'
+    | '/dashboard/purchases'
+    | '/dashboard/settings'
+    | '/dashboard/support'
+    | '/dashboard/transactions'
+    | '/dashboard/wallet'
+    | '/admin'
+    | '/dashboard'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/contact'
+    | '/dashboard'
+    | '/forgot-password'
+    | '/login'
+    | '/pricing'
+    | '/reset-password'
+    | '/signup'
+    | '/sitemap.xml'
+    | '/admin/analytics'
+    | '/admin/investments'
+    | '/admin/kyc'
+    | '/admin/logs'
+    | '/admin/matches'
+    | '/admin/packages'
+    | '/admin/purchases'
+    | '/admin/settings'
+    | '/admin/support'
+    | '/admin/transactions'
+    | '/admin/users'
+    | '/admin/withdrawals'
+    | '/dashboard/account-management'
+    | '/dashboard/analytics'
+    | '/dashboard/notifications'
+    | '/dashboard/profile'
+    | '/dashboard/purchase'
+    | '/dashboard/purchases'
+    | '/dashboard/settings'
+    | '/dashboard/support'
+    | '/dashboard/transactions'
+    | '/dashboard/wallet'
+    | '/admin/'
+    | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  ContactRoute: typeof ContactRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  LoginRoute: typeof LoginRoute
+  PricingRoute: typeof PricingRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  SignupRoute: typeof SignupRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +537,255 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/dashboard/wallet': {
+      id: '/dashboard/wallet'
+      path: '/wallet'
+      fullPath: '/dashboard/wallet'
+      preLoaderRoute: typeof DashboardWalletRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/transactions': {
+      id: '/dashboard/transactions'
+      path: '/transactions'
+      fullPath: '/dashboard/transactions'
+      preLoaderRoute: typeof DashboardTransactionsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/support': {
+      id: '/dashboard/support'
+      path: '/support'
+      fullPath: '/dashboard/support'
+      preLoaderRoute: typeof DashboardSupportRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/purchases': {
+      id: '/dashboard/purchases'
+      path: '/purchases'
+      fullPath: '/dashboard/purchases'
+      preLoaderRoute: typeof DashboardPurchasesRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/purchase': {
+      id: '/dashboard/purchase'
+      path: '/purchase'
+      fullPath: '/dashboard/purchase'
+      preLoaderRoute: typeof DashboardPurchaseRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/profile': {
+      id: '/dashboard/profile'
+      path: '/profile'
+      fullPath: '/dashboard/profile'
+      preLoaderRoute: typeof DashboardProfileRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/notifications': {
+      id: '/dashboard/notifications'
+      path: '/notifications'
+      fullPath: '/dashboard/notifications'
+      preLoaderRoute: typeof DashboardNotificationsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/analytics': {
+      id: '/dashboard/analytics'
+      path: '/analytics'
+      fullPath: '/dashboard/analytics'
+      preLoaderRoute: typeof DashboardAnalyticsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/account-management': {
+      id: '/dashboard/account-management'
+      path: '/account-management'
+      fullPath: '/dashboard/account-management'
+      preLoaderRoute: typeof DashboardAccountManagementRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/admin/withdrawals': {
+      id: '/admin/withdrawals'
+      path: '/withdrawals'
+      fullPath: '/admin/withdrawals'
+      preLoaderRoute: typeof AdminWithdrawalsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/transactions': {
+      id: '/admin/transactions'
+      path: '/transactions'
+      fullPath: '/admin/transactions'
+      preLoaderRoute: typeof AdminTransactionsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/support': {
+      id: '/admin/support'
+      path: '/support'
+      fullPath: '/admin/support'
+      preLoaderRoute: typeof AdminSupportRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/purchases': {
+      id: '/admin/purchases'
+      path: '/purchases'
+      fullPath: '/admin/purchases'
+      preLoaderRoute: typeof AdminPurchasesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/packages': {
+      id: '/admin/packages'
+      path: '/packages'
+      fullPath: '/admin/packages'
+      preLoaderRoute: typeof AdminPackagesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/matches': {
+      id: '/admin/matches'
+      path: '/matches'
+      fullPath: '/admin/matches'
+      preLoaderRoute: typeof AdminMatchesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/logs': {
+      id: '/admin/logs'
+      path: '/logs'
+      fullPath: '/admin/logs'
+      preLoaderRoute: typeof AdminLogsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/kyc': {
+      id: '/admin/kyc'
+      path: '/kyc'
+      fullPath: '/admin/kyc'
+      preLoaderRoute: typeof AdminKycRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/investments': {
+      id: '/admin/investments'
+      path: '/investments'
+      fullPath: '/admin/investments'
+      preLoaderRoute: typeof AdminInvestmentsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminInvestmentsRoute: typeof AdminInvestmentsRoute
+  AdminKycRoute: typeof AdminKycRoute
+  AdminLogsRoute: typeof AdminLogsRoute
+  AdminMatchesRoute: typeof AdminMatchesRoute
+  AdminPackagesRoute: typeof AdminPackagesRoute
+  AdminPurchasesRoute: typeof AdminPurchasesRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminSupportRoute: typeof AdminSupportRoute
+  AdminTransactionsRoute: typeof AdminTransactionsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminWithdrawalsRoute: typeof AdminWithdrawalsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminInvestmentsRoute: AdminInvestmentsRoute,
+  AdminKycRoute: AdminKycRoute,
+  AdminLogsRoute: AdminLogsRoute,
+  AdminMatchesRoute: AdminMatchesRoute,
+  AdminPackagesRoute: AdminPackagesRoute,
+  AdminPurchasesRoute: AdminPurchasesRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminSupportRoute: AdminSupportRoute,
+  AdminTransactionsRoute: AdminTransactionsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminWithdrawalsRoute: AdminWithdrawalsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface DashboardRouteChildren {
+  DashboardAccountManagementRoute: typeof DashboardAccountManagementRoute
+  DashboardAnalyticsRoute: typeof DashboardAnalyticsRoute
+  DashboardNotificationsRoute: typeof DashboardNotificationsRoute
+  DashboardProfileRoute: typeof DashboardProfileRoute
+  DashboardPurchaseRoute: typeof DashboardPurchaseRoute
+  DashboardPurchasesRoute: typeof DashboardPurchasesRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardSupportRoute: typeof DashboardSupportRoute
+  DashboardTransactionsRoute: typeof DashboardTransactionsRoute
+  DashboardWalletRoute: typeof DashboardWalletRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardAccountManagementRoute: DashboardAccountManagementRoute,
+  DashboardAnalyticsRoute: DashboardAnalyticsRoute,
+  DashboardNotificationsRoute: DashboardNotificationsRoute,
+  DashboardProfileRoute: DashboardProfileRoute,
+  DashboardPurchaseRoute: DashboardPurchaseRoute,
+  DashboardPurchasesRoute: DashboardPurchasesRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardSupportRoute: DashboardSupportRoute,
+  DashboardTransactionsRoute: DashboardTransactionsRoute,
+  DashboardWalletRoute: DashboardWalletRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AdminRoute: AdminRouteWithChildren,
+  ContactRoute: ContactRoute,
+  DashboardRoute: DashboardRouteWithChildren,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  LoginRoute: LoginRoute,
+  PricingRoute: PricingRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  SignupRoute: SignupRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
