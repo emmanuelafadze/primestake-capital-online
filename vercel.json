@@ -4,13 +4,27 @@
   "installCommand": "bun install",
   "buildCommand": "bun run build",
   "outputDirectory": "dist/client",
-  "routes": [
+  "cleanUrls": true,
+  "headers": [
     {
-      "handle": "filesystem"
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
     }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/sitemap.xml", "dest": "/sitemap.xml" },
+    { "src": "/robots.txt", "dest": "/robots.txt" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
