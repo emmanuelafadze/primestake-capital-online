@@ -5,6 +5,8 @@ import { Footer } from "@/components/site/Footer";
 import { ArrowUpRight, ShieldCheck, LineChart, Lock, Sparkles, CheckCircle2 } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import marble from "@/assets/texture-marble.jpg";
+import dashboardPreview from "@/assets/dashboard-preview.jpg";
+import chatPreview from "@/assets/chat-preview.jpg";
 import t1 from "@/assets/testimonial-1.jpg";
 import t2 from "@/assets/testimonial-2.jpg";
 import t3 from "@/assets/testimonial-3.jpg";
