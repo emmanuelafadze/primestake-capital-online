@@ -59,6 +59,7 @@ function Contact() {
             Members can also reach support directly inside the dashboard. The concierge desk responds within 24 hours.
           </p>
           <dl className="mt-10 space-y-6 text-sm">
+            <div><dt className="text-xs uppercase tracking-wider text-muted-foreground">Support</dt><dd className="mt-1"><a href="mailto:support.primestakecapital@hotmail.com" className="hover:text-foreground">support.primestakecapital@hotmail.com</a></dd></div>
             <div><dt className="text-xs uppercase tracking-wider text-muted-foreground">Concierge</dt><dd className="mt-1">concierge@primestakecapital.com</dd></div>
             <div><dt className="text-xs uppercase tracking-wider text-muted-foreground">Compliance</dt><dd className="mt-1">compliance@primestakecapital.com</dd></div>
             <div><dt className="text-xs uppercase tracking-wider text-muted-foreground">Hours</dt><dd className="mt-1">Monday — Sunday, 24/7</dd></div>
