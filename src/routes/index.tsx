@@ -102,6 +102,65 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* PRODUCT PREVIEW */}
+      <section className="relative overflow-hidden border-b border-border bg-background">
+        <div className="pointer-events-none absolute -top-32 left-1/2 h-96 w-[60rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-6 py-24">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">The platform</p>
+            <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">Your capital, in one elegant interface.</h2>
+            <p className="mt-4 text-muted-foreground">A live dashboard, a concierge chat, and every release tracked in real time — built to feel as deliberate as the strategy behind it.</p>
+          </div>
+
+          <div className="mt-16 grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
+              className="group relative"
+            >
+              <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-accent/20 via-primary/10 to-transparent blur-2xl" />
+              <div className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-elegant)]">
+                <div className="flex items-center gap-1.5 border-b border-border bg-muted/40 px-4 py-3">
+                  <span className="h-2.5 w-2.5 rounded-full bg-destructive/70" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-accent/80" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-success/70" />
+                  <span className="ml-3 text-xs text-muted-foreground">dashboard.primestakecapital.online</span>
+                </div>
+                <img
+                  src={dashboardPreview}
+                  alt="PrimeStake Capital portfolio dashboard"
+                  className="block w-full transition-transform duration-700 group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+              </div>
+              <div className="mt-6 grid grid-cols-3 gap-3 text-center text-xs">
+                <div className="rounded-xl border border-border bg-card px-3 py-3"><p className="font-semibold text-foreground">Live P&L</p><p className="mt-1 text-muted-foreground">refreshed every tick</p></div>
+                <div className="rounded-xl border border-border bg-card px-3 py-3"><p className="font-semibold text-foreground">Position log</p><p className="mt-1 text-muted-foreground">analyst-signed</p></div>
+                <div className="rounded-xl border border-border bg-card px-3 py-3"><p className="font-semibold text-foreground">One-click withdraw</p><p className="mt-1 text-muted-foreground">24h release</p></div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}
+              className="relative mx-auto w-full max-w-sm"
+            >
+              <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-b from-accent/20 to-transparent blur-2xl" />
+              <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-[var(--shadow-elegant)]">
+                <img
+                  src={chatPreview}
+                  alt="PrimeStake Capital concierge chat"
+                  className="block w-full"
+                  loading="lazy"
+                />
+              </div>
+              <div className="mt-6 rounded-2xl border border-border bg-card p-5">
+                <p className="text-xs uppercase tracking-wider text-muted-foreground">Concierge chat</p>
+                <p className="mt-2 text-sm text-foreground">Direct line to a senior associate. Median response under 9 minutes.</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* PACKAGES */}
       <section className="mx-auto max-w-7xl px-6 py-24">
         <div className="flex items-end justify-between flex-wrap gap-6">
