@@ -82,5 +82,5 @@ Allow: /
 User-agent: DiffBot
 Allow: /
 
-Host: https://primestakecapital.online
-Sitemap: https://primestakecapital.online/sitemap.xml
+Host: https://www.pscapital.online
+Sitemap: https://www.pscapital.online/sitemap.xml

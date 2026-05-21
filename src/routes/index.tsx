@@ -123,7 +123,7 @@ export default function Landing() {
                   <span className="h-2.5 w-2.5 rounded-full bg-destructive/70" />
                   <span className="h-2.5 w-2.5 rounded-full bg-accent/80" />
                   <span className="h-2.5 w-2.5 rounded-full bg-success/70" />
-                  <span className="ml-3 text-xs text-muted-foreground">dashboard.primestakecapital.online</span>
+                  <span className="ml-3 text-xs text-muted-foreground">dashboard.pscapital.online</span>
                 </div>
                 <img
                   src={dashboardPreview}
