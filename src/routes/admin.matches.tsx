@@ -25,13 +25,21 @@ const EMPTY: Partial<Match> = {
   match_date: "", predicted_score: "", odds: null, result: "", status: "scheduled",
 };
 
+type Leg = { league: string; home_team: string; away_team: string; match_date: string; predicted_score: string; odds: string; result: string };
+const EMPTY_LEG: Leg = { league: "", home_team: "", away_team: "", match_date: "", predicted_score: "", odds: "", result: "" };
+
 function Page() {
   const [rows, setRows] = useState<Match[]>([]);
   const [pkgs, setPkgs] = useState<Pkg[]>([]);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<Partial<Match>>(EMPTY);
+  const [leg2, setLeg2] = useState<Leg>({ ...EMPTY_LEG });
   const [saving, setSaving] = useState(false);
+
+  const selectedPkg = pkgs.find((p) => p.id === editing.package_id);
+  const isCombo = selectedPkg?.slug === "combo" && !editing.id;
+
 
   async function load() {
     setLoading(true);
@@ -46,18 +54,23 @@ function Page() {
   }
   useEffect(() => { load(); }, []);
 
-  function startNew() { setEditing({ ...EMPTY }); setOpen(true); }
+  function startNew() { setEditing({ ...EMPTY }); setLeg2({ ...EMPTY_LEG }); setOpen(true); }
   function startEdit(r: Match) {
     setEditing({
       ...r,
       match_date: r.match_date ? new Date(r.match_date).toISOString().slice(0, 16) : "",
     });
+    setLeg2({ ...EMPTY_LEG });
     setOpen(true);
   }
 
   async function save() {
     if (!editing.home_team || !editing.away_team || !editing.match_date) {
       toast.error("Home, away and match date are required.");
+      return;
+    }
+    if (isCombo && (!leg2.home_team || !leg2.away_team || !leg2.match_date)) {
+      toast.error("Combo requires two matches — fill both legs.");
       return;
     }
     setSaving(true);
@@ -72,16 +85,32 @@ function Page() {
       result: editing.result || null,
       status: editing.status || "scheduled",
     };
-    const q = editing.id
-      ? supabase.from("fixed_matches").update(payload).eq("id", editing.id)
-      : supabase.from("fixed_matches").insert(payload);
-    const { error } = await q;
+    let error: any = null;
+    if (editing.id) {
+      ({ error } = await supabase.from("fixed_matches").update(payload).eq("id", editing.id));
+    } else if (isCombo) {
+      const second = {
+        package_id: editing.package_id || null,
+        league: leg2.league || null,
+        home_team: leg2.home_team,
+        away_team: leg2.away_team,
+        match_date: new Date(leg2.match_date).toISOString(),
+        predicted_score: leg2.predicted_score || null,
+        odds: leg2.odds === "" ? null : Number(leg2.odds),
+        result: leg2.result || null,
+        status: editing.status || "scheduled",
+      };
+      ({ error } = await supabase.from("fixed_matches").insert([payload, second]));
+    } else {
+      ({ error } = await supabase.from("fixed_matches").insert(payload));
+    }
     setSaving(false);
     if (error) { toast.error(error.message); return; }
-    toast.success(editing.id ? "Match updated." : "Match created.");
+    toast.success(editing.id ? "Match updated." : isCombo ? "Combo (2 matches) created." : "Match created.");
     setOpen(false);
     load();
   }
+
 
   async function remove(id: string) {
     if (!confirm("Delete this match?")) return;
@@ -143,36 +172,56 @@ function Page() {
 
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={() => setOpen(false)}>
-          <div className="w-full max-w-xl rounded-2xl border border-border bg-background p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
+          <div className="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-2xl border border-border bg-background p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-lg font-semibold">{editing.id ? "Edit match" : "New match"}</h3>
+              <h3 className="text-lg font-semibold">{editing.id ? "Edit match" : isCombo ? "New combo (2 matches)" : "New match"}</h3>
               <button onClick={() => setOpen(false)} className="rounded p-1 text-muted-foreground hover:bg-accent"><X className="h-5 w-5" /></button>
             </div>
-            <div className="grid gap-3 md:grid-cols-2">
+            <Field label="Tier (package)">
+              <select value={editing.package_id ?? ""} onChange={(e) => setEditing({ ...editing, package_id: e.target.value })} className="h-10 w-full rounded-md border border-border bg-background px-3 text-sm">
+                <option value="">— Unassigned —</option>
+                {pkgs.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
+              </select>
+            </Field>
+            <Field label="Status">
+              <select value={editing.status ?? "scheduled"} onChange={(e) => setEditing({ ...editing, status: e.target.value })} className="h-10 w-full rounded-md border border-border bg-background px-3 text-sm">
+                <option value="scheduled">scheduled</option>
+                <option value="released">released</option>
+                <option value="completed">completed</option>
+                <option value="cancelled">cancelled</option>
+              </select>
+            </Field>
+
+            {isCombo && <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Leg 1</p>}
+            <div className="mt-2 grid gap-3 md:grid-cols-2">
               <Field label="Home team"><Input value={editing.home_team ?? ""} onChange={(v) => setEditing({ ...editing, home_team: v })} /></Field>
               <Field label="Away team"><Input value={editing.away_team ?? ""} onChange={(v) => setEditing({ ...editing, away_team: v })} /></Field>
               <Field label="League"><Input value={editing.league ?? ""} onChange={(v) => setEditing({ ...editing, league: v })} /></Field>
               <Field label="Match date">
                 <input type="datetime-local" value={(editing.match_date as string) ?? ""} onChange={(e) => setEditing({ ...editing, match_date: e.target.value })} className="h-10 w-full rounded-md border border-border bg-background px-3 text-sm" />
               </Field>
-              <Field label="Tier (package)">
-                <select value={editing.package_id ?? ""} onChange={(e) => setEditing({ ...editing, package_id: e.target.value })} className="h-10 w-full rounded-md border border-border bg-background px-3 text-sm">
-                  <option value="">— Unassigned —</option>
-                  {pkgs.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
-                </select>
-              </Field>
               <Field label="Predicted score"><Input value={editing.predicted_score ?? ""} onChange={(v) => setEditing({ ...editing, predicted_score: v })} placeholder="2-1" /></Field>
               <Field label="Odds"><Input value={editing.odds == null ? "" : String(editing.odds)} onChange={(v) => setEditing({ ...editing, odds: v === "" ? null : (Number(v) as any) })} placeholder="3.50" /></Field>
               <Field label="Result"><Input value={editing.result ?? ""} onChange={(v) => setEditing({ ...editing, result: v })} placeholder="won / lost / pending" /></Field>
-              <Field label="Status">
-                <select value={editing.status ?? "scheduled"} onChange={(e) => setEditing({ ...editing, status: e.target.value })} className="h-10 w-full rounded-md border border-border bg-background px-3 text-sm">
-                  <option value="scheduled">scheduled</option>
-                  <option value="released">released</option>
-                  <option value="completed">completed</option>
-                  <option value="cancelled">cancelled</option>
-                </select>
-              </Field>
             </div>
+
+            {isCombo && (
+              <>
+                <p className="mt-6 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Leg 2</p>
+                <div className="mt-2 grid gap-3 rounded-xl border border-dashed border-border p-3 md:grid-cols-2">
+                  <Field label="Home team"><Input value={leg2.home_team} onChange={(v) => setLeg2({ ...leg2, home_team: v })} /></Field>
+                  <Field label="Away team"><Input value={leg2.away_team} onChange={(v) => setLeg2({ ...leg2, away_team: v })} /></Field>
+                  <Field label="League"><Input value={leg2.league} onChange={(v) => setLeg2({ ...leg2, league: v })} /></Field>
+                  <Field label="Match date">
+                    <input type="datetime-local" value={leg2.match_date} onChange={(e) => setLeg2({ ...leg2, match_date: e.target.value })} className="h-10 w-full rounded-md border border-border bg-background px-3 text-sm" />
+                  </Field>
+                  <Field label="Predicted score"><Input value={leg2.predicted_score} onChange={(v) => setLeg2({ ...leg2, predicted_score: v })} placeholder="1-2" /></Field>
+                  <Field label="Odds"><Input value={leg2.odds} onChange={(v) => setLeg2({ ...leg2, odds: v })} placeholder="3.20" /></Field>
+                  <Field label="Result"><Input value={leg2.result} onChange={(v) => setLeg2({ ...leg2, result: v })} placeholder="won / lost / pending" /></Field>
+                </div>
+              </>
+            )}
+
             <div className="mt-6 flex justify-end gap-2">
               <button onClick={() => setOpen(false)} className="h-10 rounded-full border border-border px-4 text-sm">Cancel</button>
               <button disabled={saving} onClick={save} className="inline-flex h-10 items-center gap-2 rounded-full bg-foreground px-5 text-sm font-medium text-background disabled:opacity-50">
