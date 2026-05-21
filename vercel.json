@@ -5,7 +5,6 @@
   "buildCommand": "bun run build",
   "outputDirectory": "dist",
   "cleanUrls": true,
-  "trailingSlash": false,
   "headers": [
     {
       "source": "/sitemap.xml",
