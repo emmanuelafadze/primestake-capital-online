@@ -54,18 +54,23 @@ function Page() {
   }
   useEffect(() => { load(); }, []);
 
-  function startNew() { setEditing({ ...EMPTY }); setOpen(true); }
+  function startNew() { setEditing({ ...EMPTY }); setLeg2({ ...EMPTY_LEG }); setOpen(true); }
   function startEdit(r: Match) {
     setEditing({
       ...r,
       match_date: r.match_date ? new Date(r.match_date).toISOString().slice(0, 16) : "",
     });
+    setLeg2({ ...EMPTY_LEG });
     setOpen(true);
   }
 
   async function save() {
     if (!editing.home_team || !editing.away_team || !editing.match_date) {
       toast.error("Home, away and match date are required.");
+      return;
+    }
+    if (isCombo && (!leg2.home_team || !leg2.away_team || !leg2.match_date)) {
+      toast.error("Combo requires two matches — fill both legs.");
       return;
     }
     setSaving(true);
@@ -80,16 +85,32 @@ function Page() {
       result: editing.result || null,
       status: editing.status || "scheduled",
     };
-    const q = editing.id
-      ? supabase.from("fixed_matches").update(payload).eq("id", editing.id)
-      : supabase.from("fixed_matches").insert(payload);
-    const { error } = await q;
+    let error: any = null;
+    if (editing.id) {
+      ({ error } = await supabase.from("fixed_matches").update(payload).eq("id", editing.id));
+    } else if (isCombo) {
+      const second = {
+        package_id: editing.package_id || null,
+        league: leg2.league || null,
+        home_team: leg2.home_team,
+        away_team: leg2.away_team,
+        match_date: new Date(leg2.match_date).toISOString(),
+        predicted_score: leg2.predicted_score || null,
+        odds: leg2.odds === "" ? null : Number(leg2.odds),
+        result: leg2.result || null,
+        status: editing.status || "scheduled",
+      };
+      ({ error } = await supabase.from("fixed_matches").insert([payload, second]));
+    } else {
+      ({ error } = await supabase.from("fixed_matches").insert(payload));
+    }
     setSaving(false);
     if (error) { toast.error(error.message); return; }
-    toast.success(editing.id ? "Match updated." : "Match created.");
+    toast.success(editing.id ? "Match updated." : isCombo ? "Combo (2 matches) created." : "Match created.");
     setOpen(false);
     load();
   }
+
 
   async function remove(id: string) {
     if (!confirm("Delete this match?")) return;
