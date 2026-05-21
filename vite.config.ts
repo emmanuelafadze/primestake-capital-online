@@ -8,6 +8,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 export default defineConfig({
   plugins: [
     TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
+    // @ts-expect-error - customViteReactPlugin is supported at runtime
     tanstackStart({ customViteReactPlugin: true }),
     react(),
     tailwindcss(),
