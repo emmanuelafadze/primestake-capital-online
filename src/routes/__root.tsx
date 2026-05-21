@@ -65,7 +65,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "PrimeStake Capital",
-          url: "https://primestakecapital.com",
+          url: "https://www.pscapital.online",
           logo: "/favicon.png",
           description: "Elite sports capital management platform.",
         }),
