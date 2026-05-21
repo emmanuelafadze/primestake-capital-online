@@ -25,13 +25,21 @@ const EMPTY: Partial<Match> = {
   match_date: "", predicted_score: "", odds: null, result: "", status: "scheduled",
 };
 
+type Leg = { league: string; home_team: string; away_team: string; match_date: string; predicted_score: string; odds: string; result: string };
+const EMPTY_LEG: Leg = { league: "", home_team: "", away_team: "", match_date: "", predicted_score: "", odds: "", result: "" };
+
 function Page() {
   const [rows, setRows] = useState<Match[]>([]);
   const [pkgs, setPkgs] = useState<Pkg[]>([]);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<Partial<Match>>(EMPTY);
+  const [leg2, setLeg2] = useState<Leg>({ ...EMPTY_LEG });
   const [saving, setSaving] = useState(false);
+
+  const selectedPkg = pkgs.find((p) => p.id === editing.package_id);
+  const isCombo = selectedPkg?.slug === "combo" && !editing.id;
+
 
   async function load() {
     setLoading(true);
